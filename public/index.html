@@ -12,13 +12,63 @@
       crossorigin="anonymous"
     />
     <!-- App CSS -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Raleway:300i,700i"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/layout.scss" type="text/css" />
 
     <!-- External JS -->
 
     <!-- App JS -->
   </head>
   <body>
-    <h2>Hello World</h2>
+    <!-- Nav bar fixed -->
+    <nav id="navbar" class="navbar navbar-dark bg-dark">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Fast Lane</a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <form class="form-inline">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="basic-addon1"
+            />
+          </div>
+        </form>
+      </div>
+    </nav>
+    <!-- main body starts here -->
     <form class="question" action="/poll" method="post">
       <textarea type="text" placeholder="Write question here"></textarea>
       <input id="email" name="email" type="email" />
