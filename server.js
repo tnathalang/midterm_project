@@ -46,7 +46,7 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.post("/", (req, res) => {
+app.post("/poll", (req, res) => {
   console.log(req.body);
   res.send("ok");
 });
