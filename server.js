@@ -42,8 +42,8 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // Home page
-app.get("/hey", (req, res) => {
-  res.render("Hey Friends"); // res.render("index");
+app.get("/", (req, res) => {
+  res.render("index");
 });
 
 app.listen(PORT, () => {
