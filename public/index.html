@@ -70,9 +70,18 @@
     </nav>
     <!-- main body starts here -->
     <form class="question" action="/poll" method="post">
-      <textarea type="text" placeholder="Write question here"></textarea>
+      <textarea
+        name="question"
+        type="text"
+        placeholder="Whats the question homie?"
+        class="form-control"
+        id="exampleFormControlTextarea1"
+        rows="3"
+      ></textarea>
 
-      <input type="submit" name="" value="create poll" />
+      <button type="submit" class="btn btn-info">
+        <span class="glyphicon glyphicon-search"></span> Search
+      </button>
     </form>
     <!-- Bootstrap JS-->
     <script
