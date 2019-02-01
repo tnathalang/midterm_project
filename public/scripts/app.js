@@ -26,5 +26,17 @@ $(document).ready(function () {
 
   })
 
+  //ajax request to users
+  $('.test').on("click", (event) => {
+
+
+    $.ajax({
+      method: "GET",
+      url: "/api/users",
+
+    }).done((users) => {
+      console.log(users)
+    });
+  })
 
 })
