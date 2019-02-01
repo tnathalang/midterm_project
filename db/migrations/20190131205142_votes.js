@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("votes", function(table) {
-    table.increments('id');
+    table.increments('id').primary();
     table.integer("points");
   });
 };
