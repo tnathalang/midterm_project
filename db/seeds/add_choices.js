@@ -1,26 +1,27 @@
 const faker = require('faker')
 
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('midterm')
+  return knex('choices').del()
     .then(function () {
       return Promise.all([
-        // Inserts seed entries
-        knex('midterm').where({id: 1}).update(
+        knex('choices').insert(
           {
-          name_choice: faker.lorem.word(),
-          description: faker.lorem.word()
+            id: 1,
+            name_choice: faker.lorem.word(),
+            description: faker.lorem.sentence()
           }),
-        knex('midterm').where({id: 2}).update(
+        knex('choices').insert(
           {
-          name_choice: faker.lorem.word(),
-          description: faker.lorem.word()
+            id: 2,
+            name_choice: faker.lorem.word(),
+            description: faker.lorem.sentence()
           }),
-        knex('midterm').where({id: 3}).update(
+        knex('choices').insert(
           {
-          name_choice: faker.lorem.word(),
-          description: faker.lorem.word()
-          })
+            id: 3,
+            name_choice: faker.lorem.word(),
+            description: faker.lorem.sentence()
+          }),
       ]);
     });
 };
