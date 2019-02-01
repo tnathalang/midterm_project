@@ -8,25 +8,25 @@ exports.seed = function(knex, Promise) {
         // Inserts seed entries
         knex('midterm').insert(
           {
-          id: faker.random.number(),
+          id: 1,
           name_poll: faker.lorem.word(),
-          question: faker.lorem.sentence(),
+          question: faker.lorem.word(),
           admin_link: faker.lorem.word(),
           submit_link: faker.lorem.word()
           }),
         knex('midterm').insert(
           {
-          id: faker.random.number(),
+          id: 2,
           name_poll: faker.lorem.word(),
-          question: faker.lorem.sentence(),
+          question: faker.lorem.word(),
           admin_link: faker.lorem.word(),
           submit_link: faker.lorem.word()
           }),
         knex('midterm').insert(
           {
-          id: faker.random.number(),
+          id: 3,
           name_poll: faker.lorem.word(),
-          question: faker.lorem.sentence(),
+          question: faker.lorem.word(),
           admin_link: faker.lorem.word(),
           submit_link: faker.lorem.word()
           })
