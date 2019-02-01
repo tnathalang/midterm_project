@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     $.ajax({
       method: "POST",
-      url: "/polls",
+      url: "/api/polls",
       data: adminData,
     }).done((links) => {
       console.log(links)
@@ -32,7 +32,7 @@ $(document).ready(function () {
 
     $.ajax({
       method: "GET",
-      url: "/api/users",
+      url: "/api/users/admins",
 
     }).done((users) => {
       console.log(users)
