@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("polls", function(table) {
-    table.integer("id");
+    table.increments('id');
     table.string("name_poll");
     table.string("question");
     table.string("admin_link");

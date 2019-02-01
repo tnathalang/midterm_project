@@ -1,6 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("admins", function(table) {
-    table.integer("id");
+    table.increments('id');
     table.string("email");
   });
 };

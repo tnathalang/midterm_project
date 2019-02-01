@@ -6,7 +6,6 @@ exports.seed = function(knex, Promise) {
       return Promise.all([
         knex('polls').insert(
           {
-            id: 1,
             name_poll: faker.lorem.word(),
             question: faker.lorem.word(),
             admin_link: faker.internet.url(),
@@ -14,7 +13,6 @@ exports.seed = function(knex, Promise) {
           }),
         knex('polls').insert(
           {
-            id: 2,
             name_poll: faker.lorem.word(),
             question: faker.lorem.word(),
             admin_link: faker.internet.url(),
@@ -22,7 +20,6 @@ exports.seed = function(knex, Promise) {
           }),
         knex('polls').insert(
           {
-            id: 3,
             name_poll: faker.lorem.word(),
             question: faker.lorem.word(),
             admin_link: faker.internet.url(),
