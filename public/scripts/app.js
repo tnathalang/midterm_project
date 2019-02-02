@@ -10,7 +10,6 @@ $(document).ready(function () {
   }
 
 
-
   //create onsubmit event handler prevent default
   $("form.question").on("submit", function (event) {
     event.preventDefault();
@@ -24,6 +23,14 @@ $(document).ready(function () {
       console.log(links)
     });
 
+    const question = $("textarea.form-control").val()
+    createQuestion(question)
+
+    $("form.choiceArea").on("submit", function (event) {
+      event.preventDefault();
+      const choiceText = $("textarea.choiceOption").val();
+      createOption(choiceText)
+    })
   })
 
   //ajax request to users
@@ -40,3 +47,20 @@ $(document).ready(function () {
   })
 
 })
+
+function createQuestion(question){
+  $(".option-container").empty()
+  const load = $("<h2>").text(question)
+  $(".option-container").append(load);
+
+  const $choiceArea = $("<form>").addClass("choiceArea");
+  $("<ul>").addClass("choices").appendTo($choiceArea);
+  $("<textarea>").attr("placeholder", "add option").addClass("choiceOption").appendTo($choiceArea);
+  $("<button>").attr("type", "submit").text("add choice").addClass("choice").appendTo($choiceArea);
+  $(".option-container").append($choiceArea)
+}
+
+function createOption(option){
+    const $choiceInput = $("<li>").text(option);
+    $(".choices").append($choiceInput);
+}
