@@ -1,0 +1,18 @@
+               List of relations
+ Schema |       Name        |   Type   | Owner  
+--------+-------------------+----------+--------
+ public | admins            | table    | labber
+ public | admins_id_seq     | sequence | labber
+ public | choices           | table    | labber
+ public | choices_id_seq    | sequence | labber
+ public | migrations        | table    | labber
+ public | migrations_id_seq | sequence | labber
+ public | migrations_lock   | table    | labber
+ public | polls             | table    | labber
+ public | polls_id_seq      | sequence | labber
+ public | users             | table    | labber
+ public | users_id_seq      | sequence | labber
+ public | votes             | table    | labber
+ public | votes_id_seq      | sequence | labber
+(13 rows)
+
