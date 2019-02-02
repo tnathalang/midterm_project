@@ -47,13 +47,13 @@ $(document).ready(function () {
 
     $.ajax({
       method: "GET",
-      url: "/api/users/admins",
+      url: `/api/polls/${1}/choices`
+      // url: `/ api / polls / ${ id }` for next route
 
-    }).done((users) => {
-      console.log(users)
+    }).done((results) => {
+      console.log(results)
     });
   })
-
 })
 
 
