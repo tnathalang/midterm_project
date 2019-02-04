@@ -26,17 +26,62 @@ $(document).ready(function () {
 
   })
 
-  //ajax request to users
+  //ajax request test calls
   $('.test').on("click", (event) => {
 
 
     $.ajax({
       method: "GET",
-      url: "/api/users/admins",
+      url: `/api/polls/${}/choices`
+      // url: `/ api / polls / ${ id }` for next route
 
-    }).done((users) => {
-      console.log(users)
+    }).done((results) => {
+      console.log(results)
     });
   })
+
+
+
+  //ajax request call test with reusbale ajax call function
+  // haven't properly test it out yet
+  $('.test').on("click", (event) => {
+    const options = {
+      url: `/api/polls/${req.params.id}/choices`,
+      method: "GET",
+    };
+
+    request(options, response => {
+      console.log(response)
+    });
+  })
+
+
+
+  //adding ajax request calls to all the routes from poll.js
+
+  //need to add event listener for each,
+
+  //create html tags to associate the choice routes with
+
+
+  // reusable ajax request, use it where you need to make the call
+  const request = (options, cb) => {
+    $.ajax(options)
+      .done(response => {
+        cb(response);
+      })
+      .fail(err => {
+        console.log("Error: ", err);
+      })
+      .always(() => {
+        console.log("Request completed.");
+      });
+  };
+
+
+
+
+
+
 
 })
