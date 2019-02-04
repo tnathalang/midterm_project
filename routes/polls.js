@@ -37,7 +37,7 @@ module.exports = (knex) => {
     router.post('/', (req, res) => {
         knex("polls")
             .insert({
-                email: req.body.email,
+                name_poll: req.body.name,
                 question: req.body.question
             })
             .then((results) => {
@@ -50,9 +50,14 @@ module.exports = (knex) => {
     // post for options at specific poll
     //going into options
     router.post('/:id', (req, res) => {
-        knex("polls")
+        knex("choices")
 
-            .insert({ : req.body.question })
+            .insert({
+                name_choice: req.body.options,
+                description: req.body.description,
+
+
+            })
             .then((results) => {
                 res.json(results);
             })
@@ -66,8 +71,8 @@ module.exports = (knex) => {
         knex
             .select("*")
             .from("choices")
-            .innerJoin("polls", "choices.id", '=', "polls.id") // choices.poll_id
-            //.where() poll id is this specific poll id
+            .innerJoin("polls", "choices.poll_id", '=', "polls.id")
+
             .where("polls.id", "=", req.params.id)
             .then((results) => {
                 res.json(results);

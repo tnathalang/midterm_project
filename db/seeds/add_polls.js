@@ -12,6 +12,7 @@ exports.seed = function (knex, Promise) {
               question: faker.lorem.word(),
               admin_link: faker.internet.url(),
               submit_link: faker.internet.url(),
+              admin_id: 1
             }),
           knex('polls').insert(
             {
@@ -19,6 +20,7 @@ exports.seed = function (knex, Promise) {
               question: faker.lorem.word(),
               admin_link: faker.internet.url(),
               submit_link: faker.internet.url(),
+              admin_id: 2
             }),
           knex('polls').insert(
             {
@@ -26,6 +28,7 @@ exports.seed = function (knex, Promise) {
               question: faker.lorem.word(),
               admin_link: faker.internet.url(),
               submit_link: faker.internet.url(),
+              admin_id: 3
             }),
         ])
         return
