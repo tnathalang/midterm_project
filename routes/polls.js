@@ -38,7 +38,8 @@ module.exports = (knex) => {
         knex("polls")
             .insert({
                 name_poll: req.body.name,
-                question: req.body.question
+                question: req.body.question,
+                admin_id: req.body.admin_id
             })
             .then((results) => {
                 res.json(results);
@@ -55,6 +56,8 @@ module.exports = (knex) => {
             .insert({
                 name_choice: req.body.options,
                 description: req.body.description,
+                choice_number: req.body.choice_number,
+                poll_id: req.params.id
 
 
             })
