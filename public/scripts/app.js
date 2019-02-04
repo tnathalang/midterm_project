@@ -1,3 +1,5 @@
+
+
 $(document).ready(function () {
   console.log("loading app.js")
   const adminData = {
@@ -22,6 +24,12 @@ $(document).ready(function () {
     }).done((links) => {
       console.log(links)
     });
+
+
+
+
+
+
     //
     //creates the html for the choices
     createQuestion()
@@ -41,19 +49,6 @@ $(document).ready(function () {
     // })
   })
 
-  //ajax request test calls
-  $('.test').on("click", (event) => {
-
-
-    $.ajax({
-      method: "GET",
-      url: `/api/polls/${req.params.id}/choices`
-      // url: `/ api / polls / ${ id }` for next route
-
-    }).done((results) => {
-      console.log(results)
-    });
-  })
 
 
 
@@ -65,14 +60,16 @@ $(document).ready(function () {
   // haven't properly test it out yet
   $('.test').on("click", (event) => {
     const options = {
-      url: `/api/polls/${req.params.id}/choices`,
-      method: "GET",
+      url: `/1`,
+      method: "POST",
     };
 
     request(options, response => {
       console.log(response)
     });
   })
+
+
 
 
 
