@@ -1,7 +1,7 @@
 const faker = require('faker')
 
 exports.seed = function (knex, Promise) {
-  knex.raw('ALTER TABLE polls AUTO_INCREMENT = 1')
+  knex.raw('ALTER SEQUENCE polls_id_seq RESTART WITH 1')
   return knex('polls').del()
     .then(function () {
       return Promise.all([

@@ -1,5 +1,5 @@
 exports.seed = function (knex, Promise) {
-  knex.raw('ALTER TABLE users AUTO_INCREMENT = 1')
+  knex.raw('ALTER SEQUENCE users_id_seq RESTART WITH 1')
   return knex('users').del()
     .then(function () {
       return Promise.all([
