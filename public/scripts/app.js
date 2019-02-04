@@ -60,8 +60,9 @@ $(document).ready(function () {
   // haven't properly test it out yet
   $('.test').on("click", (event) => {
     const options = {
-      url: `/1`,
-      method: "POST",
+      url: `/api/polls/1/choices`,
+      method: "GET",
+      datatype: "JSON"
     };
 
     request(options, response => {

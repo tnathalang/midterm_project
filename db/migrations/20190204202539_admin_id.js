@@ -7,7 +7,7 @@ exports.up = function (knex, Promise) {
 
 exports.down = function (knex, Promise) {
     return knex.schema.table('polls', function (table) {
-        table.dropColum('admin_id')
+        table.dropColumn('admin_id')
     })
 
 };

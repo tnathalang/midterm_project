@@ -74,14 +74,14 @@ module.exports = (knex) => {
         knex
             .select("*")
             .from("choices")
-            .innerJoin("polls", "choices.poll_id", '=', "polls.id")
+            .innerJoin("polls", "polls.id", "choices.poll_id")
 
-            .where("polls.id", "=", req.params.id)
+            .where("polls.id", req.params.id)
             .then((results) => {
                 res.json(results);
             })
             .catch((err) => {
-                console.log("Error")
+                console.log("what is me ", err)
             })
     })
 
