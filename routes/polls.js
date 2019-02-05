@@ -43,13 +43,13 @@ module.exports = (knex) => {
                 question: req.body.question,
                 admin_id: req.body.admin_id
             })
-            .then((id) => {
-                knex('choices')
-                    .insert(req.body.choices)
+            // .then((id) => {
+            //     knex('choices')
+            //         .insert(req.body.choices)
 
-            })
+            // })
             .then(results => {
-                console.log("done")
+                res.json({ id: results[0] })
             })
 
     })

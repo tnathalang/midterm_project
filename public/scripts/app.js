@@ -24,6 +24,8 @@ $(document).ready(function () {
       $("form.question").css('display', 'none');
     })
 
+    $(".pollCreate").click()
+
 
 
     $.ajax({
@@ -31,12 +33,12 @@ $(document).ready(function () {
       url: "/api/polls",
       data: {
         name_poll: "Generic question name to be change eventually",
-        question: $("#exampleFormControlTextarea1").val(),
+        question: $("#form21").val(),
         admin_id: 1
       }
-    }).done((id) => {
-      console.log(id)
-      localStorage.setItem('poll_id', id)
+    }).done((result) => {
+
+      localStorage.setItem('poll_id', result.id)
 
     });
 
@@ -73,13 +75,29 @@ $(document).ready(function () {
 
     })
 
+
+
+    $('.option-container.pollCreate').on('submit', function (event) {
+      event.preventDefault()
+      //redirect to localhost:8080/randomURL
+      localStorage.getItem('poll_id')
+      //random alphanumeric string
+      let r = Math.random().toString(36).substr(2, 7)
+
+
+
+
+
+
+    })
+
     // adds the poll to the database
     $("form.pollCreation").on("submit", function (event) {
       event.preventDefault();
-
+      const id = localStorage.getItem("poll_id")
       const options = {
-        method: "GET",
-        url: "api/polls/1/choices",
+        method: "POST",
+        url: `api/polls/${id}/publish`,
       }
 
       request(options, function (results) {
@@ -116,19 +134,8 @@ $(document).ready(function () {
 
 
 
-  //ajax request call test with reusbale ajax call function
-  // haven't properly test it out yet
-  $('.test').on("click", (event) => {
-    const options = {
-      url: `/ api / polls / 1 / choices`,
-      method: "GET",
-      datatype: "JSON"
-    };
 
-    request(options, response => {
-      console.log(response)
-    });
-  })
+
 
 
 
