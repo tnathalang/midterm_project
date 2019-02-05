@@ -25,9 +25,16 @@ $(document).ready(function () {
     $.ajax({
       method: "POST",
       url: "/api/polls",
-      data: adminData,
-    }).done((links) => {
-      console.log(links)
+      data: {
+        name_poll: "Generic question name to be change eventually",
+        question: $("#exampleFormControlTextarea1").val(),
+        admin_id: 1,
+        choices: []
+      }
+    }).done((id) => {
+      console.log(id)
+      localStorage.setItem('poll_id', id)
+
     });
 
 
@@ -43,8 +50,8 @@ $(document).ready(function () {
 
       const options = {
         method: "POST",
-        url: "api/polls/1",
-        dataType:"JSON",
+        url: `/api/polls/${localStorage.getItem('poll_id')}`,
+        dataType: "JSON",
         data: {
           options: $("textarea.choiceOption").val(),
           description: $("textarea.choiceDesc").val(),
@@ -53,7 +60,7 @@ $(document).ready(function () {
 
       }
 
-      request(options, function(){
+      request(options, function () {
         createOption()
       })
 
@@ -65,11 +72,11 @@ $(document).ready(function () {
       event.preventDefault();
 
       const options = {
-       method: "GET",
-       url: "api/polls/1/choices",
+        method: "GET",
+        url: "api/polls/1/choices",
       }
 
-      request(options, function(results){
+      request(options, function (results) {
 
         console.log(results)
 
@@ -107,7 +114,7 @@ $(document).ready(function () {
   // haven't properly test it out yet
   $('.test').on("click", (event) => {
     const options = {
-      url: `/api/polls/1/choices`,
+      url: `/ api / polls / 1 / choices`,
       method: "GET",
       datatype: "JSON"
     };

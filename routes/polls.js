@@ -35,14 +35,21 @@ module.exports = (knex) => {
 
     //post for poll "/" create a new
     router.post('/', (req, res) => {
+        console.log("what is me: ", req.body)
         knex("polls")
+            .returning('id')
             .insert({
-                name_poll: req.body.name,
+                name_poll: req.body.name_poll,
                 question: req.body.question,
                 admin_id: req.body.admin_id
             })
-            .then((results) => {
-                res.json(results);
+            .then((id) => {
+                knex('choices')
+                    .insert(req.body.choices)
+
+            })
+            .then(results => {
+                console.log("done")
             })
 
     })
