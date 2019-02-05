@@ -20,55 +20,33 @@ $(document).ready(function () {
     $.ajax({
       method: "POST",
       url: "/api/polls",
-      data: {
-        question: $("textarea.form-control").val(),
-      },
+      data: adminData,
     }).done((links) => {
       console.log(links)
     });
 
+
+
+
+
+
+    //
     //creates the html for the choices
     createQuestion()
+    makeEmailForm()
     makeOptions()
     makePollButton()
 
     //displays the choices on the page
     $("form.choiceArea").on("submit", function (event) {
       event.preventDefault();
-
-      const options = {
-        method: "POST",
-        url: "api/polls/1",
-        dataType:"JSON",
-        data: {
-          options: $("textarea.choiceOption").val(),
-          description: $("textarea.choiceDesc").val(),
-          choice_number: $("ul.choices").children("li").length + 1
-        }
-
-      }
-
-      request(options, function(){
-        console.log("success")
-      })
-
       createOption()
     })
-
-    // adds the poll to the database
-    $("form.pollCreation").on("submit", function (event) {
-      event.preventDefault();
-
-      const options = {
-       method: "GET",
-       url: "api/polls/1",
-      }
-
-      request(options, function(results){
-
-
-      })
-    })
+    //adds the poll to the database
+    // $("form.choiceArea").on("submit", function (event) {
+    //   event.preventDefault();
+    //
+    // })
   })
 
 
@@ -120,11 +98,9 @@ $(document).ready(function () {
 
   function createOption() {
     const choiceText = $("textarea.choiceOption").val();
-    const choiceDesc = $("textarea.choiceDesc").val();
-    const $choiceInput = $("<li>").text(choiceText + ": " + choiceDesc);
+    const $choiceInput = $("<li>").text(choiceText);
     $(".choices").append($choiceInput);
     $(".choiceOption").val("")
-    $(".choiceDesc").val("")
   }
 
   function createQuestion() {
@@ -138,7 +114,6 @@ $(document).ready(function () {
     const $choiceArea = $("<form>").addClass("choiceArea");
     $("<ul>").addClass("choices").appendTo($choiceArea);
     $("<textarea>").attr("placeholder", "add option").addClass("choiceOption").appendTo($choiceArea);
-    $("<textarea>").attr("placeholder", "add description").addClass("choiceDesc").appendTo($choiceArea);
     $("<button>").attr("type", "submit").text("add choice").addClass("choice").appendTo($choiceArea);
     $(".option-container").append($choiceArea);
   }
@@ -148,4 +123,15 @@ $(document).ready(function () {
     $(".option-container").append($submitPoll)
   }
 
+
+
+
+
 })
+
+
+function makeEmailForm() {
+  const $email = $("<form>").addClass("emailForm");
+  $("<textarea>").attr("placeholder", "add email").addClass("userEmail").appendTo($email);
+  $(".option-container").append($email)
+}
