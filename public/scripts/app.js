@@ -2,6 +2,9 @@
 
 $(document).ready(function () {
   console.log("loading app.js")
+
+
+
   const adminData = {
     admin: {
       name: "Aqua",
@@ -24,31 +27,39 @@ $(document).ready(function () {
     }).done((links) => {
       console.log(links)
     });
-
-
-
-
-
-
-    //
-    //creates the html for the choices
-    createQuestion()
-    makeEmailForm()
-    makeOptions()
-    makePollButton()
-
-    //displays the choices on the page
-    $("form.choiceArea").on("submit", function (event) {
-      event.preventDefault();
-      createOption()
-    })
-    //adds the poll to the database
-    // $("form.choiceArea").on("submit", function (event) {
-    //   event.preventDefault();
-    //
-    // })
   })
 
+
+
+
+
+  //
+  //creates the html for the choices
+  createQuestion()
+  makeEmailForm()
+  makeOptions()
+  makePollButton()
+
+  //displays the choices on the page
+  $("form.choiceArea").on("submit", function (event) {
+    event.preventDefault();
+    createOption()
+
+  })
+  //adds the poll to the database
+  // $("form.choiceArea").on("submit", function (event) {
+  //   event.preventDefault();
+  //
+  // })
+
+
+
+
+  //adding ajax request calls to all the routes from poll.js
+
+  //need to add event listener for each,
+
+  //create html tags to associate the choice routes with
 
 
 
@@ -73,14 +84,6 @@ $(document).ready(function () {
 
 
 
-
-  //adding ajax request calls to all the routes from poll.js
-
-  //need to add event listener for each,
-
-  //create html tags to associate the choice routes with
-
-
   // reusable ajax request, use it where you need to make the call
   const request = (options, cb) => {
     $.ajax(options)
@@ -95,39 +98,40 @@ $(document).ready(function () {
       });
   };
 
-
-  function createOption() {
-    const choiceText = $("textarea.choiceOption").val();
-    const $choiceInput = $("<li>").text(choiceText);
-    $(".choices").append($choiceInput);
-    $(".choiceOption").val("")
-  }
-
-  function createQuestion() {
-    const question = $("textarea.form-control").val();
-    $(".option-container").empty();
-    $(".form-control").val("");
-    const load = $("<h2>").text(question);
-    $(".option-container").append(load);
-  }
-  function makeOptions() {
-    const $choiceArea = $("<form>").addClass("choiceArea");
-    $("<ul>").addClass("choices").appendTo($choiceArea);
-    $("<textarea>").attr("placeholder", "add option").addClass("choiceOption").appendTo($choiceArea);
-    $("<button>").attr("type", "submit").text("add choice").addClass("choice").appendTo($choiceArea);
-    $(".option-container").append($choiceArea);
-  }
-  function makePollButton() {
-    const $submitPoll = $("<form>").addClass("pollCreation");
-    $("<button>").attr("type", "submit").text("create poll").addClass("pollCreate").appendTo($submitPoll);
-    $(".option-container").append($submitPoll)
-  }
-
-
-
-
-
 })
+
+function createOption() {
+  const choiceText = $("textarea.choiceOption").val();
+  const $choiceInput = $("<li>").text(choiceText);
+  $(".choices").append($choiceInput);
+  $(".choiceOption").val("")
+}
+
+function createQuestion() {
+  const question = $("textarea.form-control").val();
+  $(".option-container").empty();
+  $(".form-control").val("");
+  const load = $("<h2>").text(question);
+  $(".option-container").append(load);
+}
+function makeOptions() {
+  const $choiceArea = $("<form>").addClass("choiceArea");
+  $("<ul>").addClass("choices").appendTo($choiceArea);
+  $("<textarea>").attr("placeholder", "add option").addClass("choiceOption").appendTo($choiceArea);
+  $("<button>").attr("type", "submit").text("add choice").addClass("choice").appendTo($choiceArea);
+  $(".option-container").append($choiceArea);
+}
+function makePollButton() {
+  const $submitPoll = $("<form>").addClass("pollCreation");
+  $("<button>").attr("type", "submit").text("create poll").addClass("pollCreate").appendTo($submitPoll);
+  $(".option-container").append($submitPoll)
+}
+
+
+
+
+
+
 
 
 function makeEmailForm() {
