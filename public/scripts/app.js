@@ -19,6 +19,24 @@ $(document).ready(function () {
   $("form.question").on("submit", function (event) {
     event.preventDefault();
     console.log("submit");
+    $("#form21").fadeOut(300)
+    $("#form21_btn").fadeOut(300, function () {
+      $("form.question").css('display', 'none');
+    })
+
+    $.ajax({
+      method: "POST",
+      url: "/api/polls",
+      data: {
+        name_poll: "Generic question name to be change eventually",
+        question: $("#exampleFormControlTextarea1").val(),
+        admin_id: 1
+      }
+    }).done((id) => {
+      console.log(id)
+      localStorage.setItem('poll_id', id)
+
+    });
 
     //creates the html for the choices
     createQuestion()
@@ -29,6 +47,7 @@ $(document).ready(function () {
     $("form.choiceArea").on("submit", function (event) {
       event.preventDefault();
 
+      request(options, function () {
         createOption()
     })
 
@@ -62,38 +81,6 @@ $(document).ready(function () {
       }
 
       request(options, function(){})
-
-
-      // options: $("textarea.choiceOption").val(),
-      // description: $("textarea.choiceDesc").val(),
-      // choice_number: $("ul.choices").children("li").length + 1
-      //
-      // const options = {
-      //   method: "POST",
-      //   url: "api/polls",
-      //   dataType:"JSON",
-      //   data: {
-      //
-      //   }
-      // }
-
-      // request(options, function(results){
-      //
-      //   console.log(results)
-
-        // const admin = JSON.stringify(results[0].admin_link)
-        // const submit = JSON.stringify(results[0].submit_link)
-        // const links = $("<section>").addClass("links")
-        // $("<label>").text("admin link:").appendTo(links)
-        // $("<a>").attr("href", admin).addClass("adminLink").text(admin).appendTo(links)
-        // $("<label>").text("voter link:").appendTo(links)
-        // $("<a>").attr("href", submit).addClass("submitLink").text(submit).appendTo(links)
-        //
-        // $("main.container").empty()
-        // $("main.container").append(links)
-      //
-      //
-      // })
 
 
     })
@@ -158,7 +145,7 @@ function createOption() {
 }
 
 function createQuestion() {
-  const question = $("textarea.form-control").val();
+  const question = $("input#form21").val();
   $(".option-container").empty();
   $(".form-control").val("");
   const load = $("<h2>").text(question).addClass("question");

@@ -3,10 +3,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid blue;
+
 }
 
 .hello {
   width: 50%;
   border: 1px dashed red;
+}
+
+.active-pink-textarea.md-form label.active {
+    color: #04facd;
+    background-color: transparent
+}
+.pink-textarea input.md-textarea{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+}
+.pink-textarea input.md-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #04facd;
+    box-shadow: 0 1px 0 0 #04facd;
+    background-color: transparent;
+}
+.pink-textarea.md-form .prefix.active {
+    color: #04facd;
+    background-color: transparent
+}
+
+#form21_btn{
+  margin-bottom: auto;
+    margin-left: 1em;
 }

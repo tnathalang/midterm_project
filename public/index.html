@@ -35,7 +35,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="http://localhost:8080/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
@@ -57,14 +57,16 @@
   <!-- main body starts here -->
   <main class="container">
     <form class="question">
-      <textarea name="question" type="text" placeholder="Whats the question homie?" class="form-control" id="exampleFormControlTextarea1"
-        rows="3"></textarea>
-      <button type="submit" class="btn btn-info">
-        Ask
+      <div class="md-form mb-4 pink-textarea active-pink-textarea">
+        <i class="fas fa-angle-double-right prefix"></i>
+        <input type="text" id="form21" class="md-textarea form-control" rows="3" placeholder="What's the question?"></input>
+        <label for="form21"></label>
+      </div>
+      <button type="submit" class="btn btn-light" id="form21_btn">Ask
       </button>
     </form>
-    <input type="email">
-    <button class="test">test</button>
+
+
     <section class="option-container"></section>
 
   </main>
