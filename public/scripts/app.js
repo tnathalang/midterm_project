@@ -19,6 +19,10 @@ $(document).ready(function () {
   $("form.question").on("submit", function (event) {
     event.preventDefault();
     console.log("submit");
+    $("#form21").fadeOut(300)
+    $("#form21_btn").fadeOut(300, function () {
+      $("form.question").css('display', 'none');
+    })
 
 
 
@@ -28,8 +32,7 @@ $(document).ready(function () {
       data: {
         name_poll: "Generic question name to be change eventually",
         question: $("#exampleFormControlTextarea1").val(),
-        admin_id: 1,
-        choices: []
+        admin_id: 1
       }
     }).done((id) => {
       console.log(id)
@@ -47,6 +50,9 @@ $(document).ready(function () {
     //displays the choices on the page
     $("form.choiceArea").on("submit", function (event) {
       event.preventDefault();
+
+
+
 
       const options = {
         method: "POST",
@@ -151,7 +157,7 @@ function createOption() {
 }
 
 function createQuestion() {
-  const question = $("textarea.form-control").val();
+  const question = $("input#form21").val();
   $(".option-container").empty();
   $(".form-control").val("");
   const load = $("<h2>").text(question);
