@@ -75,21 +75,19 @@ module.exports = (knex) => {
 
     })
 
-    // get choices from db for specific polls
 
-    router.get("/:id/choices", (req, res) => {
-        knex
-            .select("*")
-            .from("choices")
-            .innerJoin("polls", "polls.id", "choices.id")
 
-            .where("polls.id", Number(req.params.id))
-            .then((results) => {
-                res.json(results);
-                console.log
+    router.post("/:id/publish", (req, res) => {
+        knex('polls')
+            .where('polls.id', "=", req.params.id)
+            .update({
+                published: true
             })
-            .catch((err) => {
-                console.log(err)
+            .then((results) => {
+                console.log("successful")
+                res.json({
+                    url: "whatever"
+                })
             })
     })
 
