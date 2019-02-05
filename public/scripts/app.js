@@ -20,6 +20,8 @@ $(document).ready(function () {
     event.preventDefault();
     console.log("submit");
 
+
+
     $.ajax({
       method: "POST",
       url: "/api/polls",
@@ -27,33 +29,67 @@ $(document).ready(function () {
     }).done((links) => {
       console.log(links)
     });
+
+
+    //
+    //creates the html for the choices
+    createQuestion()
+    makeOptions()
+    makePollButton()
+
+    //displays the choices on the page
+    $("form.choiceArea").on("submit", function (event) {
+      event.preventDefault();
+
+      const options = {
+        method: "POST",
+        url: "api/polls/1",
+        dataType:"JSON",
+        data: {
+          options: $("textarea.choiceOption").val(),
+          description: $("textarea.choiceDesc").val(),
+          choice_number: $("ul.choices").children("li").length + 1
+        }
+
+      }
+
+      request(options, function(){
+        createOption()
+      })
+
+
+    })
+
+    // adds the poll to the database
+    $("form.pollCreation").on("submit", function (event) {
+      event.preventDefault();
+
+      const options = {
+       method: "GET",
+       url: "api/polls/1/choices",
+      }
+
+      request(options, function(results){
+
+        console.log(results)
+
+        // const admin = JSON.stringify(results[0].admin_link)
+        // const submit = JSON.stringify(results[0].submit_link)
+        // const links = $("<section>").addClass("links")
+        // $("<label>").text("admin link:").appendTo(links)
+        // $("<a>").attr("href", admin).addClass("adminLink").text(admin).appendTo(links)
+        // $("<label>").text("voter link:").appendTo(links)
+        // $("<a>").attr("href", submit).addClass("submitLink").text(submit).appendTo(links)
+        //
+        // $("main.container").empty()
+        // $("main.container").append(links)
+
+
+      })
+
+
+    })
   })
-
-
-
-
-
-  //
-  //creates the html for the choices
-  createQuestion()
-  makeEmailForm()
-  makeOptions()
-  makePollButton()
-
-  //displays the choices on the page
-  $("form.choiceArea").on("submit", function (event) {
-    event.preventDefault();
-    createOption()
-
-  })
-  //adds the poll to the database
-  // $("form.choiceArea").on("submit", function (event) {
-  //   event.preventDefault();
-  //
-  // })
-
-
-
 
   //adding ajax request calls to all the routes from poll.js
 
@@ -125,17 +161,4 @@ function makePollButton() {
   const $submitPoll = $("<form>").addClass("pollCreation");
   $("<button>").attr("type", "submit").text("create poll").addClass("pollCreate").appendTo($submitPoll);
   $(".option-container").append($submitPoll)
-}
-
-
-
-
-
-
-
-
-function makeEmailForm() {
-  const $email = $("<form>").addClass("emailForm");
-  $("<textarea>").attr("placeholder", "add email").addClass("userEmail").appendTo($email);
-  $(".option-container").append($email)
 }

@@ -76,7 +76,7 @@ module.exports = (knex) => {
             .from("choices")
             .innerJoin("polls", "polls.id", "choices.id")
 
-            .where("polls.id", req.params.id)
+            .where("polls.id", Number(req.params.id))
             .then((results) => {
                 res.json(results);
                 console.log
