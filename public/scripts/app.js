@@ -59,7 +59,7 @@ $(document).ready(function () {
         url: `/api/polls/${localStorage.getItem('poll_id')}`,
         dataType: "JSON",
         data: {
-          options: $("textarea.choiceOption").val(),
+          options: $("input.choiceOption").val(),
           description: $("textarea.choiceDesc").val(),
           choice_number: $("ul.choices").children("li").length + 1
         }
@@ -150,7 +150,7 @@ $(document).ready(function () {
 })
 
 function createOption() {
-  const choiceText = $("textarea.choiceOption").val();
+  const choiceText = $("input.choiceOption").val();
   const $choiceInput = $("<li>").text(choiceText);
   $(".choices").append($choiceInput);
   $(".choiceOption").val("")
@@ -166,7 +166,7 @@ function createQuestion() {
 function makeOptions() {
   const $choiceArea = $("<form>").addClass("choiceArea");
   $("<ul>").addClass("choices").appendTo($choiceArea);
-  $("<textarea>").attr("placeholder", "add option").addClass("choiceOption").appendTo($choiceArea);
+  $("<input type='text'>").attr("placeholder", "add option").addClass("choiceOption").appendTo($choiceArea);
   $("<button>").attr("type", "submit").text("add choice").addClass("choice").appendTo($choiceArea);
   $(".option-container").append($choiceArea);
 }
