@@ -24,17 +24,24 @@ $(document).ready(function () {
       $("form.question").css('display', 'none');
     })
 
+<<<<<<< HEAD
+=======
+    $(".pollCreate").click()
+
+
+
+>>>>>>> b66d382da24b5cf846ce74fe6ce9312ec50c6bcd
     $.ajax({
       method: "POST",
       url: "/api/polls",
       data: {
         name_poll: "Generic question name to be change eventually",
-        question: $("#exampleFormControlTextarea1").val(),
+        question: $("#form21").val(),
         admin_id: 1
       }
-    }).done((id) => {
-      console.log(id)
-      localStorage.setItem('poll_id', id)
+    }).done((result) => {
+
+      localStorage.setItem('poll_id', result.id)
 
     });
 
@@ -47,13 +54,48 @@ $(document).ready(function () {
     $("form.choiceArea").on("submit", function (event) {
       event.preventDefault();
 
+<<<<<<< HEAD
+=======
+
+
+
+      const options = {
+        method: "POST",
+        url: `/api/polls/${localStorage.getItem('poll_id')}`,
+        dataType: "JSON",
+        data: {
+          options: $("input.choiceOption").val(),
+          description: $("textarea.choiceDesc").val(),
+          choice_number: $("ul.choices").children("li").length + 1
+        }
+
+      }
+
+>>>>>>> b66d382da24b5cf846ce74fe6ce9312ec50c6bcd
       request(options, function () {
         createOption()
+    })
+
+
+
+    $('.option-container.pollCreate').on('submit', function (event) {
+      event.preventDefault()
+      //redirect to localhost:8080/randomURL
+      localStorage.getItem('poll_id')
+      //random alphanumeric string
+      let r = Math.random().toString(36).substr(2, 7)
+
+
+
+
+
+
     })
 
     // adds the poll to the database
     $("form.pollCreation").on("submit", function (event) {
       event.preventDefault();
+<<<<<<< HEAD
 
       const askQuestion = $("h2.question").text()
       const choiceArr = []
@@ -78,6 +120,12 @@ $(document).ready(function () {
           admin_id: "1",
           choices: choiceArr
         }
+=======
+      const id = localStorage.getItem("poll_id")
+      const options = {
+        method: "POST",
+        url: `api/polls/${id}/publish`,
+>>>>>>> b66d382da24b5cf846ce74fe6ce9312ec50c6bcd
       }
 
       request(options, function(){})
@@ -98,6 +146,7 @@ $(document).ready(function () {
 
 
 
+<<<<<<< HEAD
   //ajax request call test with reusbale ajax call function
   // haven't properly test it out yet
   $('.test').on("click", (event) => {
@@ -106,11 +155,10 @@ $(document).ready(function () {
       method: "GET",
       datatype: "JSON"
     };
+=======
+>>>>>>> b66d382da24b5cf846ce74fe6ce9312ec50c6bcd
 
-    request(options, response => {
-      console.log(response)
-    });
-  })
+
 
 
 
@@ -132,6 +180,7 @@ $(document).ready(function () {
 })
 
 function createOption() {
+<<<<<<< HEAD
   const choiceText = $("textarea.choiceOption").val();
   const $choiceInput = $("<li>");
   const $choiceText = $("<span>").text(choiceText).addClass("name");
@@ -139,6 +188,10 @@ function createOption() {
   const $choiceDesc = $("<span>").text(choiceDesc).addClass("desc");
   $($choiceInput).append($choiceText);
   $($choiceInput).append($choiceDesc);
+=======
+  const choiceText = $("input.choiceOption").val();
+  const $choiceInput = $("<li>").text(choiceText);
+>>>>>>> b66d382da24b5cf846ce74fe6ce9312ec50c6bcd
   $(".choices").append($choiceInput);
   $(".choiceOption").val("")
   $(".choiceDesc").val("")
@@ -154,8 +207,12 @@ function createQuestion() {
 function makeOptions() {
   const $choiceArea = $("<form>").addClass("choiceArea");
   $("<ul>").addClass("choices").appendTo($choiceArea);
+<<<<<<< HEAD
   $("<textarea>").attr("placeholder", "add option").addClass("choiceOption").appendTo($choiceArea);
   $("<input>").attr("type", "text").addClass("choiceDesc").appendTo($choiceArea);
+=======
+  $("<input type='text'>").attr("placeholder", "add option").addClass("choiceOption").appendTo($choiceArea);
+>>>>>>> b66d382da24b5cf846ce74fe6ce9312ec50c6bcd
   $("<button>").attr("type", "submit").text("add choice").addClass("choice").appendTo($choiceArea);
   $(".option-container").append($choiceArea);
 }

@@ -43,13 +43,13 @@ module.exports = (knex) => {
                 question: req.body.question,
                 admin_id: req.body.admin_id
             })
-            .then((id) => {
-                knex('choices')
-                    .insert(req.body.choices)
+            // .then((id) => {
+            //     knex('choices')
+            //         .insert(req.body.choices)
 
-            })
+            // })
             .then(results => {
-                console.log("done")
+                res.json({ id: results[0] })
             })
 
     })
@@ -75,21 +75,25 @@ module.exports = (knex) => {
 
     })
 
-    // get choices from db for specific polls
+    function generateRandomString() {
 
-    router.get("/:id/choices", (req, res) => {
-        knex
-            .select("*")
-            .from("choices")
-            .innerJoin("polls", "polls.id", "choices.id")
+        return Math.random().toString(36).substr(2, 7)
+    }
 
-            .where("polls.id", Number(req.params.id))
-            .then((results) => {
-                res.json(results);
-                console.log
+
+    router.post("/:id/publish", (req, res) => {
+        const key = generateRandomString()
+        knex('polls')
+            .where('polls.id', "=", req.params.id)
+            .update({
+                published: true,
+                key: key
             })
-            .catch((err) => {
-                console.log(err)
+            .then((results) => {
+                console.log("successful")
+                res.json({
+                    url: `/polls/${key}/vote`
+                })
             })
     })
 
