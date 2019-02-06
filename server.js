@@ -49,8 +49,22 @@ app.get("/", (req, res) => {
 });
 
 app.get('/polls/:key/vote', (req, res) => {
-  res.render('vote');
-
+  knex
+    .select("*")
+    .from("polls")
+    .where("polls.key", "=", req.params.key)
+    .then((results) => {
+      knex
+        .select("*")
+        .from("choices")
+        .where("poll_id", "=", results[0].id)
+        .then((choiceResults) => {
+          res.render("vote", {
+            poll: results,
+            choices: choiceResults
+          });
+        })
+    })
 })
 
 
