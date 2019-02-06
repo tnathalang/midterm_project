@@ -1,1 +1,61 @@
-HELLO
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <!-- Meta Information -->
+    <meta charset="utf-8">
+    <title>FastLane</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+      crossorigin="anonymous" />
+    <!-- App CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300i,700i" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <!-- External JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <!-- App JS -->
+    <script src="/scripts/app.js"></script>
+  </head>
+  <body>
+    <!-- Nav bar fixed -->
+    <nav id="navbar" class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">Fast Lane</a>
+
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="http://localhost:8080/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Disabled</a>
+          </li>
+        </ul>
+        <form class="form-inline">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+            <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+          </div>
+        </form>
+      </div>
+    </nav>
+    hello
+    <main>
+      <ul class="voting">
+        <% choices.forEach(function(choice, i) { %>
+          <li id="<%= i + 1 %>"><span><%= choice.name_choice %></span><input type="number" min="1" max="<%= choices.length%>"></input></li>
+          <% }) %>
+      </ul>
+      <button type="submit" class="votePoll">Submit Vote</button>
+    </main>
+  </body>
+</html>
