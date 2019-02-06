@@ -1,6 +1,6 @@
 exports.seed = function (knex, Promise) {
   return Promise.all([
-    knex.raw('ALTER SEQUENCE polls_id_seq RESTART WITH 1'),
+    knex.raw('ALTER SEQUENCE users_id_seq RESTART WITH 1'),
     knex('users').del()
       .then(function () {
         return Promise.all([
