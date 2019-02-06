@@ -79,8 +79,8 @@ $(document).ready(function () {
 
     const key = (window.location.pathname).split("/polls/").join("").split("/vote").join("");
     const votesRank = []
-
     const choices = $("ul.voting").children("li");
+
     $.each(choices, function(i, element){
       const choice = {
         choice_id: $(element).attr("id"),
@@ -89,14 +89,15 @@ $(document).ready(function () {
       votesRank.push(choice)
     })
 
-    console.log(votesRank);
     const options = {
       method:"POST",
       url: `/polls/${key}/final`,
       data: votesRank
     }
 
-
+    request(options,function(){
+      console.log("data sent successfully");
+    })
 
   })
   // reusable ajax request, use it where you need to make the call
@@ -119,7 +120,7 @@ function createOption() {
   const $choiceInput = $("<li>").text(choiceText);
   $(".choices").append($choiceInput);
   $(".choiceOption").val("")
-}
+};
 
 function createQuestion() {
   const question = $("input#form21").val();
@@ -127,7 +128,7 @@ function createQuestion() {
   $(".form-control").val("");
   const load = $("<h2>").text(question).addClass("question");
   $(".option-container").append(load);
-}
+};
 
 function makeOptions() {
   const $choiceArea = $("<form>").addClass("choiceArea");
@@ -135,10 +136,10 @@ function makeOptions() {
   $("<input type='text'>").attr("placeholder", "add option").addClass("choiceOption").appendTo($choiceArea);
   $("<button>").attr("type", "submit").text("add choice").addClass("choice").appendTo($choiceArea);
   $(".option-container").append($choiceArea);
-}
+};
 
 function makePollButton() {
   const $submitPoll = $("<form>").addClass("pollCreation");
   $("<button>").attr("type", "submit").text("create poll").addClass("pollCreate").appendTo($submitPoll);
   $(".option-container").append($submitPoll)
-}
+};
