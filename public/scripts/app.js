@@ -73,6 +73,18 @@ $(document).ready(function () {
       })
     })
   })
+  // add publish result to dabatbase
+  $('').on('submit', function (event) {
+    event.preventDefault()
+    // const key =
+    const options = {
+      method: "POST",
+      url: `polls/:{key}/vote`
+    }
+    request(options, function (result) {
+
+    })
+  })
 
   $("button.votePoll").on("click", function (event) {
     event.preventDefault();
@@ -91,8 +103,10 @@ $(document).ready(function () {
 
     const options = {
       method:"POST",
-      url: `/polls/${key}/final`,
-      data: votesRank
+      url: "/votes",
+      data: {
+        votes: votesRank
+      }
     }
 
     request(options,function(){

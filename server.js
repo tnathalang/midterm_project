@@ -66,6 +66,18 @@ app.get('/polls/:key/vote', (req, res) => {
         })
     })
 })
+app.get('/polls/:key/final', (req, res) => {
+  knex
+    .select("id")
+    .from('choices')
+
+    .select("*")
+    .from('votes')
+    .where('choice.id')
+
+  res.render('final');
+
+})
 
 
 
