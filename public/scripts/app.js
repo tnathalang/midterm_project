@@ -73,6 +73,23 @@ $(document).ready(function () {
       })
     })
   })
+  // add publish result to dabatbase
+  $('').on('submit', function (event) {
+    event.preventDefault()
+    // const key = 
+    const options = {
+      method: "POST",
+      url: `polls/:{key}/vote`
+    }
+    request(options, function (result) {
+
+    })
+
+  })
+
+
+
+
 
   // reusable ajax request, use it where you need to make the call
   const request = (options, cb) => {
