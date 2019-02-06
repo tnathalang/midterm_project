@@ -68,24 +68,35 @@ app.get('/polls/:key/vote', (req, res) => {
 })
 app.get('/polls/:key/final', (req, res) => {
   knex
-    .select("id")
-    .from('choices')
 
-    .select("*")
-    .from('votes')
-    .where('choice.id')
+    // .select("name_choice", "choices_votes.vote_id", "choices.poll_id", "polls.key")
+    .select('*')
 
-  res.render('final');
+    .from('polls')
+    .innerJoin('choices', 'choices.poll_id', 'polls.id')
+    .where('key', req.params.key)
+    .then((results) => {
+      const templateVar = {
+        result: results
+      }
+      console.log(templateVar)
+      res.render('final', templateVar)
+    })
+
+
+
 
 })
 
-app.post('/votes', (req, res) => {
-  const results = req.body.votes
-  console.log(JSON.parse(req.body))
+app.post('/polls/:id/votes', (req, res) => {
+  const results = req.body.votes.map(voteObj => ({ choice_id: Number(voteObj.choice_id), vote_id: Number(voteObj.vote_id) }))
+  const pollId = req.params.id;
+  console.log("inserting votes")
   knex('choices_votes')
     .insert(results)
     .then(function (result) {
-      console.log(result)
+      console.log(`/polls/${pollId}/final`)
+      res.redirect(`/polls/${pollId}/final`)
     })
 
 })

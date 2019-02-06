@@ -35,7 +35,7 @@ module.exports = (knex) => {
 
     //post for poll "/" create a new
     router.post('/', (req, res) => {
-        console.log("what is me: ", req.body)
+
         knex("polls")
             .returning('id')
             .insert({
@@ -83,6 +83,7 @@ module.exports = (knex) => {
 
     router.post("/:id/publish", (req, res) => {
         const key = generateRandomString()
+        console.log("string ============================", "updating with key")
         knex('polls')
             .where('polls.id', "=", req.params.id)
             .update({
@@ -90,7 +91,7 @@ module.exports = (knex) => {
                 key: key
             })
             .then((results) => {
-                console.log("successful")
+                console.log("successful", results)
                 res.json({
                     url: `/polls/${key}/vote`
                 })

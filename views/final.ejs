@@ -58,8 +58,8 @@
 <main class="showresult">
 <section> TOTAL SCORE </section>
     <ul>
-    <% ['hi', 'hello', 'yo', 'salut'].forEach(function(choice, index, arr){ %>
-    <li><%= choices.name_choice %> <span><%= arr.length - index %></span> </li>
+    <% result.forEach(function(choice, index, arr){ %>
+    <li><%= choice.name_choice %> <span><%= arr.length - index %></span> </li>
    <% }) %>
    </ul>
 </main>

@@ -51,6 +51,13 @@ $(document).ready(function () {
       })
     })
 
+    $('.option-container.pollCreate').on('submit', function (event) {
+      event.preventDefault()
+      //redirect to localhost:8080/randomURL
+      localStorage.getItem('poll_id')
+      //random alphanumeric string
+      let r = Math.random().toString(36).substr(2, 7)
+    })
 
     // adds the poll to the database
     $("form.pollCreation").on("submit", function (event) {
@@ -85,12 +92,8 @@ $(document).ready(function () {
     const key = (window.location.pathname).split("/polls/").join("").split("/vote").join("");
     const votesRank = []
     const choices = $("ul.voting").children("li");
-<<<<<<< HEAD
-    $.each(choices, function (i, element) {
-=======
 
-    $.each(choices, function(i, element){
->>>>>>> f4d8f30a99920ca3af27f30bbf3c735ab8c5a94c
+    $.each(choices, function (i, element) {
       const choice = {
         choice_id: $(element).attr("id"),
         vote_id: $(element).children("input").val()
@@ -99,20 +102,14 @@ $(document).ready(function () {
     })
 
     const options = {
-<<<<<<< HEAD
       method: "POST",
-      url: `/polls/${key}/final`,
-      data: votesRank
-=======
-      method:"POST",
-      url: "/votes",
+      url: `/polls/${key}/votes`,
       data: {
         votes: votesRank
       }
->>>>>>> f4d8f30a99920ca3af27f30bbf3c735ab8c5a94c
     }
-
-    request(options,function(){
+    console.log(options)
+    request(options, function () {
       console.log("data sent successfully");
     })
 
