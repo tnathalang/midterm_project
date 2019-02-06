@@ -68,7 +68,9 @@ $(document).ready(function () {
         method: "POST",
         url: `api/polls/${id}/publish`,
       }
-      request(options, function(){})
+      request(options, function (result) {
+        window.location.href = result.url
+      })
     })
   })
 
