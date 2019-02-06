@@ -79,6 +79,17 @@ app.get('/polls/:key/final', (req, res) => {
 
 })
 
+app.post('/votes', (req, res) => {
+  const results = req.body.votes
+  console.log(JSON.parse(req.body))
+  knex('choices_votes')
+    .insert(results)
+    .then(function (result) {
+      console.log(result)
+    })
+
+})
+
 
 
 app.listen(PORT, () => {
