@@ -48,7 +48,8 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-app.get("/choices", (req, res) => {
+app.get('/polls/:key/vote', (req, res) => {
+  res.render('vote');
 
 })
 
