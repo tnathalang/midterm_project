@@ -91,6 +91,31 @@ $(document).ready(function () {
 
 
 
+  $("button.votePoll").on("click", function (event) {
+    event.preventDefault();
+
+    const key = (window.location.pathname).split("/polls/").join("").split("/vote").join("");
+    const votesRank = []
+
+    const choices = $("ul.voting").children("li");
+    $.each(choices, function(i, element){
+      const choice = {
+        choice_id: $(element).attr("id"),
+        vote_id: $(element).children("input").val()
+      }
+      votesRank.push(choice)
+    })
+
+    console.log(votesRank);
+    const options = {
+      method:"POST",
+      url: `/polls/${key}/final`,
+      data: votesRank
+    }
+
+
+
+  })
   // reusable ajax request, use it where you need to make the call
   const request = (options, cb) => {
     $.ajax(options)
