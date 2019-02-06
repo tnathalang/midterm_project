@@ -75,18 +75,24 @@ module.exports = (knex) => {
 
     })
 
+    function generateRandomString() {
+
+        return Math.random().toString(36).substr(2, 7)
+    }
 
 
     router.post("/:id/publish", (req, res) => {
+        const key = generateRandomString()
         knex('polls')
             .where('polls.id', "=", req.params.id)
             .update({
-                published: true
+                published: true,
+                key: key
             })
             .then((results) => {
                 console.log("successful")
                 res.json({
-                    url: "whatever"
+                    url: `/polls/${key}/vote`
                 })
             })
     })
